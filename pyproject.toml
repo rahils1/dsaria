@@ -1,0 +1,15 @@
+[project]
+name = "dsaria"
+version = "0.1.0"
+description = "A simple Python library for data structures and algorithms."
+authors = [
+    { name = "Rahil Shaik", email = "rahil15973@gmail.com" }
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
