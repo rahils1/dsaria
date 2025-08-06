@@ -100,11 +100,6 @@ dmypy.json
 # pipenv
 Pipfile.lock
 
-# Environments
-.env
-.envrc
-.env.*
-
 # VS Code settings folder
 .vscode/
 
