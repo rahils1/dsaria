@@ -39,3 +39,6 @@ coverage.xml
 
 # Logs
 *.log
+
+# Readme
+README_PYPI.md
