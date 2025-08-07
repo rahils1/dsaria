@@ -18,6 +18,7 @@ pip install dsaria
 ## Current Features
 ### Sorting Algorithms
 - Bubble Sort
+- Counting Sort
 - More sorting algorithms coming soon!
 ### Data Structures
--Coming soon!
+- Coming soon!
