@@ -21,8 +21,24 @@ def test_counting_sort_negative_raises_value_error():
 
 def test_counting_sort_float_raises_type_error():
     with pytest.raises(TypeError):
-        dsaria.sort.counting_sort(arr=[1, 2, 3.5])  # type: ignore
+        dsaria.sort.counting_sort(arr=[1, 2, 3.5])
 
 def test_counting_sort_string_raises_type_error():
     with pytest.raises(TypeError):
-        dsaria.sort.counting_sort(arr=[1, 2, "3"])  # type: ignore
+        dsaria.sort.counting_sort(arr=[1, 2, "3"])
+
+def test_counting_sort_single_repeated_value():
+    arr = [7] * 10
+    assert dsaria.sort.counting_sort(arr=arr) == arr
+
+def test_counting_sort_reverse_sorted():
+    arr = [5, 4, 3, 2, 1, 0]
+    assert dsaria.sort.counting_sort(arr=arr) == sorted(arr)
+
+def test_counting_sort_already_sorted():
+    arr = [0, 1, 2, 3, 4, 5]
+    assert dsaria.sort.counting_sort(arr=arr) == arr
+
+def test_counting_sort_already_sorted():
+    arr = [0, 1, 2, 3, 4, 5]
+    assert dsaria.sort.counting_sort(arr=arr) == arr

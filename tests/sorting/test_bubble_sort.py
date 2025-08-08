@@ -1,3 +1,4 @@
+import pytest
 import dsaria.sort
 
 def test_bubble_sort_normal_cases():
@@ -18,5 +19,13 @@ def test_bubble_sort_duplicates():
 def test_bubble_sort_all_equal():
     assert dsaria.sort.bubble_sort(arr=[7,7,7,7]) == [7,7,7,7]
 
+def test_bubble_sort_floats():
+    arr = [1.1, 2.2, 0.5, 2.1]
+    assert dsaria.sort.bubble_sort(arr=arr) == sorted(arr)
+
 def test_bubble_sort_strings():
     assert dsaria.sort.bubble_sort(arr=["b","a","c"]) == ["a","b","c"]
+
+def test_bubble_sort_mixed_types_raises_type_error():
+    with pytest.raises(TypeError):
+        dsaria.sort.bubble_sort(arr=[1, "2", 3])

@@ -28,6 +28,11 @@ def bubble_sort(*, arr: List[Any]) -> List[Any]:
         Average case: O(n^2)
 
     """
+    if arr:
+        list_type = type(arr[0])
+        for val in arr:
+            if not isinstance(val, list_type): raise TypeError("All elements in the input array must be the same data type.")
+
     n = len(arr)
     for i in range(n):
         swapped = False

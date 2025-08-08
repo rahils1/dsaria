@@ -22,3 +22,7 @@ pip install dsaria
 - More sorting algorithms coming soon!
 ### Data Structures
 - Coming soon!
+
+## PyPI URL
+
+Check out the project on PyPI: [dsaria](https://pypi.org/project/dsaria/)
