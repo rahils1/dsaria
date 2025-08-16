@@ -21,7 +21,9 @@ pip install dsaria
 - Counting Sort
 - More sorting algorithms coming soon!
 ### Data Structures
-- Coming soon!
+- Linked Lists
+- Heaps
+- More data structures coming soon!
 
 ## PyPI URL
 

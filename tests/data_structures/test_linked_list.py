@@ -1,5 +1,6 @@
 import pytest
 from dsaria.linked_list import LinkedList
+import random
 
 def test_insert_normal_case():
     ll = LinkedList(val_type=int, unique_vals=False)
@@ -119,3 +120,73 @@ def test_uv_property_is_read_only():
     ll = LinkedList(val_type=int, unique_vals=True)
     with pytest.raises(AttributeError):
         ll.uv = False
+
+def test_large_scale_inserts_sorted_order():
+    ll = LinkedList(val_type=int, unique_vals=True)
+    nums = list(range(1000))
+    random.shuffle(nums)
+    for n in nums:
+        ll.insert(val=n)
+    # should remain sorted
+    assert ll.to_list() == sorted(nums)
+    assert len(ll) == 1000
+
+
+def test_large_scale_inserts_with_duplicates_allowed():
+    ll = LinkedList(val_type=int, unique_vals=False)
+    nums = [random.randint(0, 100) for _ in range(500)]
+    for n in nums:
+        ll.insert(val=n)
+    # sorted, but duplicates preserved
+    result = ll.to_list()
+    assert result == sorted(nums)
+    assert len(result) == len(nums)
+
+
+def test_large_scale_deletes_with_duplicates():
+    ll = LinkedList(val_type=int, unique_vals=False)
+    for n in [5] * 200 + [10] * 100 + [15]:
+        ll.insert(val=n)
+    ll.delete(val=5)
+    assert all(v != 5 for v in ll.to_list())
+    assert 10 in ll.to_list()
+    assert 15 in ll.to_list()
+    assert len(ll) == 101
+
+
+def test_mixed_operations_large_scale():
+    ll = LinkedList(val_type=int, unique_vals=False)
+    values = list(range(500))
+    random.shuffle(values)
+
+    # insert half
+    for v in values[:250]:
+        ll.insert(val=v)
+
+    # delete some random subset
+    for v in random.sample(values[:250], 100):
+        ll.delete(val=v)
+
+    # insert remaining half
+    for v in values[250:]:
+        ll.insert(val=v)
+
+    # check type safety still works
+    with pytest.raises(TypeError):
+        ll.insert(val="not-an-int")
+
+    # ensure sorted order
+    assert ll.to_list() == sorted(ll.to_list())
+
+
+def test_clear_and_reuse_large_scale():
+    ll = LinkedList(val_type=int, unique_vals=True)
+    for i in range(1000):
+        ll.insert(val=i)
+    ll.clear()
+    assert ll.is_empty()
+    assert len(ll) == 0
+
+    # reuse after clear
+    ll.insert(val=42)
+    assert ll.to_list() == [42]
